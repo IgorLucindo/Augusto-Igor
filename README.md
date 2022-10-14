@@ -48,7 +48,6 @@ Cada domínio poderá ter mais os seguintes marcadores em relação às análise
 - Análise adiada
 > O usuário ainda não analisou o domínio
 
-Haverá a possibilidade de exportar um escaneamento de domínios feita pelo website [Securitytrails](https://securitytrails.com) por meio da API de sua conta.
 ## **Mapeamento**
 
 Nesta aba, cada domínio analisado na aba anterior será apresentado aqui nesta aba como um mapeamento da aplicação com cada diretório e funcionalidades embutidas neles.
