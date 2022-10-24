@@ -87,3 +87,7 @@ Após isso você verá no terminal a linha de comando com URL ``http://127.0.0.1
 127.0.0.1 - - [24/Oct/2022 15:13:42] "GET /favicon.ico HTTP/1.1" 404 -
  ```
 </font>
+
+Acessando a URL aparecerá a seguinte interface no navegador, onde o usuário realizará seu cadastro ou login para acessar seus projetos:
+
+![HOME](images/home.png)
