@@ -56,4 +56,4 @@ O hacker, então, poderá organizar as requisições, funcionalidades, cookies e
 ## **Usuário**
 
 Para utilizar a aplicação, será necessário criar um login e senha. Na aba "usuário", este poderá ver informações mais abrangentes dos projetos analisados, escolher o projeto o qual vai focar agora e começar o hacking. 
-Além disso terá um campo para deletar a conta, remover projetos, e colocar APIs para melhor integração de ferramentas. 
+Além disso terá um campo para deletar a conta, remover projetos.
