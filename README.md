@@ -57,3 +57,33 @@ O hacker, então, poderá organizar as requisições, funcionalidades, cookies e
 
 Para utilizar a aplicação, será necessário criar um login e senha. Na aba "usuário", este poderá ver informações mais abrangentes dos projetos analisados, escolher o projeto o qual vai focar agora e começar o hacking. 
 Além disso terá um campo para deletar a conta, remover projetos.
+
+## **Tutorial de execução**
+
+A aplicação tem como requisitos possuir o python 3 instalado e executar os comandos no arquivo ``requirements.txt`` conforme com o seguinte comando:
+<font size='4'>
+ ```
+$ pip install -r requirements.txt
+ ```
+ </font>
+
+E em seguida, para iniciar o programa basta executar o arquivo ``run.py`` através do seguinte comando:
+<font size='4'>
+ ```
+$ python3 run.py
+ ```
+</font>
+
+Após isso você verá no terminal a linha de comando com URL ``http://127.0.0.1:5000`` da aplicação:
+<font size='4'>
+ ```
+ * Serving Flask app 'bughunter'
+ * Debug mode: on
+ * Running on http://127.0.0.1:5000
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 534-739-443
+127.0.0.1 - - [24/Oct/2022 15:13:41] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [24/Oct/2022 15:13:42] "GET /favicon.ico HTTP/1.1" 404 -
+ ```
+</font>
