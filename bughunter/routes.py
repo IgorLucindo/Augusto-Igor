@@ -1,7 +1,7 @@
 from bughunter import app
 from flask import render_template, redirect, url_for, flash, request
 from bughunter.models import User
-from bughunter.forms import RegisterForm, LoginForm
+from bughunter.forms import RegisterForm, LoginForm, ProjectForm
 from bughunter import db
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -10,10 +10,30 @@ from flask_login import login_user, logout_user, login_required, current_user
 def home_page():
     return render_template('home.html')
 
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @app.route('/projects', methods=['GET', 'POST'])
 @login_required
 def projects_page():
-    return render_template('projects.html')
+    # if request.method == "POST":
+    #     #Purchase Item Logic
+    #     purchased_item = request.form.get('purchased_item')
+    #     p_item_object = Item.query.filter_by(name=purchased_item).first()
+    #     if p_item_object:
+    #         if current_user.can_purchase(p_item_object):
+    #             p_item_object.buy(current_user)
+    #             flash(f"Congratulations! You purchased {p_item_object.name} for {p_item_object.price}$", category='success')
+    #         else:
+    #             flash(f"Unfortunately, you don't have enough money to purchase {p_item_object.name}!", category='danger')
+
+    #     return redirect(url_for('projects_page'))
+
+    if request.method == "GET":
+        form = ProjectForm()
+        return render_template('projects.html', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])

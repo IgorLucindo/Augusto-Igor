@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(length=30), nullable=False, unique=True)
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
+    projects = db.relationship('Project', backref='owned_user', lazy=True)
 
     @property
     def password(self):
@@ -23,4 +24,28 @@ class User(db.Model, UserMixin):
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
 
+class Project(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(length=30), nullable=False, unique=True)
+    image = db.Column(db.String(length=1024)) # url da imagem
+    date_of_start = db.Column(db.String(length=10), nullable=False)
+    date_of_end = db.Column(db.String(length=10))
+    description = db.Column(db.String(length=1024), nullable=False, unique=True)
+    owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    domain = db.relationship('Domain', backref='project_originated', lazy=True)
+    
+    def __repr__(self):
+        return f'Project {self.name}'
+
+
+class Domain(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(length=200), nullable=False, unique=True)
+    description = db.Column(db.String(length=1024), nullable=False, unique=True)
+    services = db.Column(db.String(length=20), nullable=False, unique=True)
+    status = db.Column(db.String(length=20), nullable=False, unique=True)
+    project = db.Column(db.Integer(), db.ForeignKey('project.id'))
+    
+    def __repr__(self):
+        return f'{self.name}'
 

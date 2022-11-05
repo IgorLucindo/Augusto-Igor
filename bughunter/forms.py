@@ -1,4 +1,6 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileRequired
+from werkzeug.utils import secure_filename
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from bughunter.models import User
@@ -23,4 +25,20 @@ class RegisterForm(FlaskForm):
 class LoginForm(FlaskForm):
     username = StringField(label='User Name:', validators=[DataRequired()])
     password = PasswordField(label='Password:', validators=[DataRequired()])
+    image = FileField(validators=[FileRequired()])
     submit = SubmitField(label='Sign In')
+
+
+class ProjectForm(FlaskForm):
+    # name = db.Column(db.String(length=30), nullable=False, unique=True)
+    # image = db.Column(db.String(length=1024)) # url da imagem
+    # date_of_start = db.Column(db.String(length=10), nullable=False)
+    # date_of_end = db.Column(db.String(length=10))
+    # description = db.Column(db.String(length=1024), nullable=False, unique=True)
+    # owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    # domain = db.relationship('Domain', backref='project_originated', lazy=True)
+
+    name = StringField(label='Nome do projeto: ', validators=[DataRequired()])
+    image = StringField(label='URL da imagem do projeto: ', validators=[DataRequired()])
+    description = StringField(label='Descrição do projeto: ', validators=[DataRequired()])
+    submit = SubmitField(label='Adicionar')
