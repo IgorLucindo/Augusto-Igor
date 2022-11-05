@@ -3,6 +3,7 @@
     Welcome to Bug Hunter Hub
 {% endblock %}
 {% block content %}
+<br>
 <div class="container"></div>
     <div class="card card-body bg-dark">
         <figure class="figure">
@@ -11,12 +12,33 @@
               class="figure-img img-fluid rounded shadow-3 mb-3"
               alt="Taking up Water with a Spoon"
             />
-            <figcaption class="figure-caption">Spotify</figcaption>
+            <figcaption class="figure-caption">creada</figcaption>
           </figure>
-          
+          <h1 class="">Spotify</h3>
     <p class="">Site muito interessante para se hackear</p>
     </div>
 </div>
+
+{% for project in projects %}
+
+<br>
+<div class="container"></div>
+    <div class="card card-body bg-dark">
+        <figure class="figure">
+            <img
+              src="static/spotify.png"
+              class="figure-img img-fluid rounded shadow-3 mb-3"
+              alt="Taking up Water with a Spoon"
+            />
+            <figcaption class="figure-caption">Data de criação: {{ project.creation_date }}</figcaption>
+          </figure>
+    <h1 class="">{{ project.name }}</h3>
+    <p class="">{{ project.description }}</p>
+    </div>
+</div>
+{% endfor %}
+
+<br>
     <div class="container">
         <p>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
