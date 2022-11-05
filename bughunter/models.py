@@ -28,8 +28,7 @@ class Project(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(length=30), nullable=False, unique=True)
     image = db.Column(db.String(length=1024)) # url da imagem
-    date_of_start = db.Column(db.String(length=10), nullable=False)
-    date_of_end = db.Column(db.String(length=10))
+    creation_date = db.Column(db.String(length=10), nullable=False)
     description = db.Column(db.String(length=1024), nullable=False, unique=True)
     owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
     domain = db.relationship('Domain', backref='project_originated', lazy=True)

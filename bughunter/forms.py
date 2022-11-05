@@ -39,6 +39,6 @@ class ProjectForm(FlaskForm):
     # domain = db.relationship('Domain', backref='project_originated', lazy=True)
 
     name = StringField(label='Nome do projeto: ', validators=[DataRequired()])
-    image = StringField(label='URL da imagem do projeto: ', validators=[DataRequired()])
     description = StringField(label='Descrição do projeto: ', validators=[DataRequired()])
     submit = SubmitField(label='Adicionar')
+    image = FileField(validators=[FileRequired()])

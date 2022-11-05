@@ -4,7 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
 
-UPLOAD_FOLDER = '/projectimg'
+UPLOAD_FOLDER = '/static'
 
 app = Flask(__name__)
 

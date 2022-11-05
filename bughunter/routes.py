@@ -1,9 +1,11 @@
 from bughunter import app
 from flask import render_template, redirect, url_for, flash, request
-from bughunter.models import User
+from bughunter.models import User, Project
 from bughunter.forms import RegisterForm, LoginForm, ProjectForm
 from bughunter import db
 from flask_login import login_user, logout_user, login_required, current_user
+from datetime import date
+
 
 @app.route('/')
 @app.route('/home')
@@ -18,21 +20,30 @@ def allowed_file(filename):
 @app.route('/projects', methods=['GET', 'POST'])
 @login_required
 def projects_page():
-    # if request.method == "POST":
-    #     #Purchase Item Logic
-    #     purchased_item = request.form.get('purchased_item')
-    #     p_item_object = Item.query.filter_by(name=purchased_item).first()
-    #     if p_item_object:
-    #         if current_user.can_purchase(p_item_object):
-    #             p_item_object.buy(current_user)
-    #             flash(f"Congratulations! You purchased {p_item_object.name} for {p_item_object.price}$", category='success')
-    #         else:
-    #             flash(f"Unfortunately, you don't have enough money to purchase {p_item_object.name}!", category='danger')
+    form = ProjectForm()
+    if form.validate_on_submit():
+        # name = db.Column(db.String(length=30), nullable=False, unique=True)
+    # image = db.Column(db.String(length=1024)) # url da imagem
+    # creation_date = db.Column(db.String(length=10), nullable=False)
+    # description = db.Column(db.String(length=1024), nullable=False, unique=True)
+    # owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    # domain = db.relationship('Domain', backref='project_originated', lazy=True)
+        d1 = date.today().strftime("%d/%m/%Y")
+        project_to_create = Project(name=form.username.data,
+                              creation_date=d1,
+                              description=form.description.data,
+                              owner=current_user.id)
+        db.session.add(project_to_create)
+        db.session.commit()
+        flash(f"Projeto criado com sucesso!", category='success')
+        return redirect(url_for('projects_page'))
+    if form.errors != {}: #If there are not errors from the validations
+        for err_msg in form.errors.values():
+            flash(f'Ocorreu um erro ao criar o projeto: {err_msg}', category='danger')
 
-    #     return redirect(url_for('projects_page'))
+        return redirect(url_for('projects_page'))
 
     if request.method == "GET":
-        form = ProjectForm()
         return render_template('projects.html', form=form)
 
 
@@ -46,11 +57,11 @@ def register_page():
         db.session.add(user_to_create)
         db.session.commit()
         login_user(user_to_create)
-        flash(f"Account created successfully! You are now logged in as {user_to_create.username}", category='success')
+        flash(f"Conta criada com sucesso! Você está logado como {user_to_create.username}", category='success')
         return redirect(url_for('projects_page'))
     if form.errors != {}: #If there are not errors from the validations
         for err_msg in form.errors.values():
-            flash(f'There was an error with creating a user: {err_msg}', category='danger')
+            flash(f'Ocorreu um erro ao criar o usuário: {err_msg}', category='danger')
 
     return render_template('register.html', form=form)
 
@@ -63,15 +74,15 @@ def login_page():
                 attempted_password=form.password.data
         ):
             login_user(attempted_user)
-            flash(f'Success! You are logged in as: {attempted_user.username}', category='success')
+            flash(f'Successo! Agora você está logado como: {attempted_user.username}', category='success')
             return redirect(url_for('projects_page'))
         else:
-            flash('Username and password are not match! Please try again', category='danger')
+            flash('Nome de usuário ou senha não são compatíveis! Tente novamente', category='danger')
 
     return render_template('login.html', form=form)
 
 @app.route('/logout')
 def logout_page():
     logout_user()
-    flash("You have been logged out!", category='info')
+    flash("Você foi deslogado!", category='info')
     return redirect(url_for("home_page"))
