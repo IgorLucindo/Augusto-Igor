@@ -53,8 +53,7 @@ def directories_page(project):
         if form.is_submitted():
             for directory in form.directory.data.splitlines():
                 domain_to_create = Domain(name=directory,
-                                project=Project.query.filter_by(name=project).first().id,
-                                owner=current_user.id)
+                                project=Project.query.filter_by(name=project).first().id)
                 db.session.add(domain_to_create)
             db.session.commit()
             
