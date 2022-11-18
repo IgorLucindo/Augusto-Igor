@@ -36,5 +36,5 @@ class ProjectForm(FlaskForm):
     submit = SubmitField(label='Adicionar')
 
 class DomainForm(FlaskForm):
-     directories= TextAreaField(label='Insira novos diretórios a serem analisados: ', validators=[DataRequired()])
+     directory= TextAreaField(label='Insira novos diretórios a serem analisados: ', validators=[DataRequired()])
      submit = SubmitField(label='Adicionar')

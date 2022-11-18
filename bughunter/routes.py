@@ -46,13 +46,25 @@ def projects_page():
         return render_template('projects.html', form=form, projects=projects)
 
 @app.route('/projects/<project>', methods=['GET', 'POST'])
+@login_required
 def directories_page(project):
     form = DomainForm()
+    if request.method == "POST":
+        if form.is_submitted():
+            # for 
+            pass
+        
+        if form.errors != {}: #If there are not errors from the validations
+            for err_msg in form.errors.values():
+                flash(f'Ocorreu um erro ao adicionar diretórios ao projeto: {err_msg}', category='danger')
+
+            return redirect(url_for('directories_page'))
     if request.method == "GET":
         
         return render_template('directories.html', form=form)
 
 @app.route('/deleteproject/<project>')
+@login_required
 def delete_project_page(project):
     imagename = Project.query.filter_by(name=project).first().image
     os.remove(f'bughunter/static/{imagename}')

@@ -3,6 +3,9 @@
     Directories Page
 {% endblock %}
 {% block content %}
+
+
+
 <br>
     <div class="container">
         <p>
@@ -15,8 +18,8 @@
                 <form method="POST" class="form-signin" style="color:white" enctype="multipart/form-data">
                     {{ form.hidden_tag() }}
                     
-                    {{ form.directories.label() }}
-                    {{ form.directories(class="form-control", placeholder="Insira novos diretórios a serem analisados: ", rows=5) }}
+                    {{ form.directory.label() }}
+                    {{ form.directory(class="form-control", placeholder="Insira novos diretórios a serem analisados: ", rows=5) }}
 
                     <br>
         
