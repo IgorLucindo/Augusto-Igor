@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}
-    Directories Page
+Domains Page
 {% endblock %}
+
+
 {% block content %}
 
-
+{% for directory in directories %}
+<p>{{ directory.name }}</p>
+{% endfor %}
 
 <br>
     <div class="container">

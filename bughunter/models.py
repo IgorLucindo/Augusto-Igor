@@ -31,7 +31,7 @@ class Project(db.Model):
     creation_date = db.Column(db.String(length=10), nullable=False)
     description = db.Column(db.String(length=1024), nullable=False, unique=True)
     owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
-    # domain = db.relationship('Domain', backref='project_originated', lazy=True)
+    domain = db.relationship('Domain', backref='project_originated', lazy=True)
     
     def __repr__(self):
         return f'Project {self.name}'
@@ -44,7 +44,7 @@ class Domain(db.Model):
     # services = db.Column(db.String(length=20), nullable=False, unique=True)
     # status = db.Column(db.String(length=20), nullable=False, unique=True)
     project = db.Column(db.Integer(), db.ForeignKey('project.id'))
-    
+    owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
     def __repr__(self):
         return f'{self.name}'
 
