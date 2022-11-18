@@ -3,37 +3,25 @@
     Welcome to Bug Hunter Hub
 {% endblock %}
 {% block content %}
-<br>
-<div class="container"></div>
-    <div class="card card-body bg-dark">
-        <figure class="figure">
-            <img
-              src="static/spotify.png"
-              class="figure-img img-fluid rounded shadow-3 mb-3"
-              alt="Taking up Water with a Spoon"
-            />
-            <figcaption class="figure-caption">criada no dia 19/11/2022</figcaption>
-          </figure>
-          <h1 class="">Spotify</h3>
-    <p class="">Site muito interessante para se hackear</p>
-    </div>
-</div>
 
 {% for project in projects %}
-
 <br>
 <div class="container"></div>
     <div class="card card-body bg-dark">
         <figure class="figure">
             <img
-              src="static/spotify.png"
+              src="static/{{ project.image }}"
               class="figure-img img-fluid rounded shadow-3 mb-3"
-              alt="Taking up Water with a Spoon"
+              alt="{{ project.image }}"
             />
             <figcaption class="figure-caption">Data de criação: {{ project.creation_date }}</figcaption>
           </figure>
     <h1 class="">{{ project.name }}</h3>
     <p class="">{{ project.description }}</p>
+    <button type="button" class="btn btn-outline-success" style="margin-bottom: 5px"
+                                   data-toggle="modal" data-target="#">
+    Acessar
+                           </button>
     </div>
 </div>
 {% endfor %}
@@ -47,7 +35,7 @@
           </p>
           <div class="collapse" id="collapseExample" >
             <div class="card card-body bg-dark">
-                <form method="POST" class="form-signin" style="color:white">
+                <form method="POST" class="form-signin" style="color:white" enctype="multipart/form-data">
                     {{ form.hidden_tag() }}
                     
                     {{ form.name.label() }}

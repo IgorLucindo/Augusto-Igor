@@ -1,6 +1,6 @@
-from bughunter import app
+from bughunter import app, images
 from flask import render_template, redirect, url_for, flash, request
-from werkzeug.utils import secure_filename
+# from werkzeug.utils import secure_filename
 from bughunter.models import User, Project
 from bughunter.forms import RegisterForm, LoginForm, ProjectForm
 from bughunter import db
@@ -23,23 +23,10 @@ def allowed_file(filename):
 def projects_page():
     form = ProjectForm()
     if request.method == "POST":
-        if form.validate_on_submit():
-            # name = db.Column(db.String(length=30), nullable=False, unique=True)
-        # image = db.Column(db.String(length=1024)) # url da imagem
-        # creation_date = db.Column(db.String(length=10), nullable=False)
-        # description = db.Column(db.String(length=1024), nullable=False, unique=True)
-        # owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
-        # domain = db.relationship('Domain', backref='project_originated', lazy=True)
-            file = request.files['image']
-            if file.filename == '':
-                flash('No selected file')
-                return redirect(request.url)
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
+        if form.is_submitted():
+            filename= images.save(form.image.data)
             d1 = date.today().strftime("%d/%m/%Y")
-            project_to_create = Project(name=form.username.data,
+            project_to_create = Project(name=form.name.data,
                                 image=filename,
                                 creation_date=d1,
                                 description=form.description.data,
