@@ -2,7 +2,7 @@ from bughunter import app, images
 from flask import render_template, redirect, url_for, flash, request
 # from werkzeug.utils import secure_filename
 from bughunter.models import User, Project
-from bughunter.forms import RegisterForm, LoginForm, ProjectForm
+from bughunter.forms import RegisterForm, LoginForm, ProjectForm, DomainForm
 from bughunter import db
 from flask_login import login_user, logout_user, login_required, current_user
 from datetime import date
@@ -44,6 +44,13 @@ def projects_page():
     if request.method == "GET":
         projects = Project.query.filter_by(owner=current_user.id)
         return render_template('projects.html', form=form, projects=projects)
+
+@app.route('/projects/<project>', methods=['GET', 'POST'])
+def directories_page(project):
+    form = DomainForm()
+    if request.method == "GET":
+        
+        return render_template('directories.html', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])

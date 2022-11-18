@@ -37,14 +37,14 @@ class Project(db.Model):
         return f'Project {self.name}'
 
 
-# class Domain(db.Model):
-#     id = db.Column(db.Integer(), primary_key=True)
-#     name = db.Column(db.String(length=200), nullable=False, unique=True)
-#     description = db.Column(db.String(length=1024), nullable=False, unique=True)
-#     services = db.Column(db.String(length=20), nullable=False, unique=True)
-#     status = db.Column(db.String(length=20), nullable=False, unique=True)
-#     project = db.Column(db.Integer(), db.ForeignKey('project.id'))
+class Domain(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(length=200), nullable=False, unique=True)
+    description = db.Column(db.String(length=1024), nullable=False, unique=True)
+    services = db.Column(db.String(length=20), nullable=False, unique=True)
+    status = db.Column(db.String(length=20), nullable=False, unique=True)
+    project = db.Column(db.Integer(), db.ForeignKey('project.id'))
     
-#     def __repr__(self):
-#         return f'{self.name}'
+    def __repr__(self):
+        return f'{self.name}'
 

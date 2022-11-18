@@ -34,3 +34,7 @@ class ProjectForm(FlaskForm):
     description = TextAreaField(label='Descrição do projeto: ', validators=[DataRequired()])
     image = FileField(validators=[FileRequired()])
     submit = SubmitField(label='Adicionar')
+
+class DomainForm(FlaskForm):
+     directories= TextAreaField(label='Insira novos diretórios a serem analisados: ', validators=[DataRequired()])
+     submit = SubmitField(label='Adicionar')

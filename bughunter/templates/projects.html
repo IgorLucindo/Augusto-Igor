@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-    Welcome to Bug Hunter Hub
+    Projects Page
 {% endblock %}
 {% block content %}
 
@@ -18,10 +18,11 @@
           </figure>
     <h1 class="">{{ project.name }}</h3>
     <p class="">{{ project.description }}</p>
-    <button type="button" class="btn btn-outline-success" style="margin-bottom: 5px"
-                                   data-toggle="modal" data-target="#">
-    Acessar
-                           </button>
+    <a type="button" class="btn btn-outline-success" href="{{ url_for('directories_page', project=project.name)}}">Acessar</a>
+    <!-- <br>
+    <br>
+    <button type="button" class="btn btn-outline-danger">Remover</a> -->
+
     </div>
 </div>
 {% endfor %}

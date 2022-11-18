@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+    Directories Page
+{% endblock %}
+{% block content %}
+<br>
+    <div class="container">
+        <p>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Novos diretórios
+            </button>
+          </p>
+          <div class="collapse" id="collapseExample" >
+            <div class="card card-body bg-dark">
+                <form method="POST" class="form-signin" style="color:white" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    
+                    {{ form.directories.label() }}
+                    {{ form.directories(class="form-control", placeholder="Insira novos diretórios a serem analisados: ", rows=5) }}
+
+                    <br>
+        
+                    {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+        
+                </form>
+            </div>
+          </div>
+    </div>
+{% endblock %}
