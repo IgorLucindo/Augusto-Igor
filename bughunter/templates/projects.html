@@ -19,23 +19,26 @@
 <br>
 <div class="container"></div>
     <div class="card card-body bg-dark">
-        <figure class="figure">
-            <img
-              src="static/{{ project.image }}"
-              class="figure-img img-fluid rounded shadow-3 mb-3"
-              alt="{{ project.image }}"
-            />
-            <figcaption class="figure-caption">Data de criação: {{ project.creation_date }}</figcaption>
-          </figure>
-    <h1 class="text-primary">{{ project.name }}</h1>
-    <p class="text-info">{{ project.description }}</p>
-    <div class="botoes">
-      <a type="button" class="btn btn-outline-success" href="{{ url_for('directories_page', project=project.name)}}">Acessar</a>
-    <br>
-      <a type="button" class="btn btn-outline-danger" href="{{ url_for('delete_project_page', project=project.name) }}">Remover</a>
+    <div>
+      <figure class="figure">
+        <img
+          src="static/{{ project.image }}"
+          class="figure-img img-fluid rounded shadow-3 mb-3"
+          alt="{{ project.image }}"
+        />
+        <figcaption class="figure-caption">Data de criação: {{ project.creation_date }}</figcaption>
+      </figure>
     </div>
-    
 
+      <h1 class="text-primary">{{ project.name }}</h1>
+
+      <p class="text-info">{{ project.description }}</p>
+
+      <div class="botoes">
+        <a type="button" class="btn btn-outline-success" href="{{ url_for('directories_page', project=project.name)}}">Acessar</a>
+
+        <a type="button" class="btn btn-outline-danger" href="{{ url_for('delete_project_page', project=project.name) }}">Remover</a>
+      </div>
     </div>
 </div>
 {% endfor %}
