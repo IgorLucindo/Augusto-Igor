@@ -44,7 +44,7 @@ class Domain(db.Model):
     # services = db.Column(db.String(length=20), nullable=False, unique=True)
     # status = db.Column(db.String(length=20), nullable=False, unique=True)
     project = db.Column(db.Integer(), db.ForeignKey('project.id'))
-    owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+
     def __repr__(self):
         return f'{self.name}'
 

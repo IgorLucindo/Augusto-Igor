@@ -6,9 +6,25 @@ Domains Page
 
 {% block content %}
 
-{% for directory in directories %}
-<p>{{ directory.name }}</p>
-{% endfor %}
+<!-- {% for domain in domains %} -->
+
+<div class="row">
+  {% for domain in domains %}
+    <div class="col-md-6">
+        <div style="margin-bottom: 5px" class="card text-center bg-dark">
+             <div class="card-body">
+                 <h5 class="card-title">{{ domain.name }}</h5>
+             </div>
+         </div>
+  {% endfor %}
+    </div>
+<!-- <div class="container-fluid">
+  <div class="card card-body bg-dark">
+    <p class="text-info">{{ domain.name }}</p>
+  </div>
+    </div>
+
+{% endfor %} -->
 
 <br>
     <div class="container">
