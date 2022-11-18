@@ -5,6 +5,16 @@
 {% block content %}
 
 {% for project in projects %}
+<head>
+  <style>
+    .botoes{
+      width: 11%;
+      display: flex;
+      justify-content: space-between;
+    };
+  </style>
+</head>
+
 <br>
 <div class="container"></div>
     <div class="card card-body bg-dark">
@@ -18,7 +28,7 @@
           </figure>
     <h1 class="text-primary">{{ project.name }}</h1>
     <p class="text-info">{{ project.description }}</p>
-    <div>
+    <div class="botoes">
       <a type="button" class="btn btn-outline-success" href="{{ url_for('directories_page', project=project.name)}}">Acessar</a>
     <br>
       <a type="button" class="btn btn-outline-danger" href="{{ url_for('delete_project_page', project=project.name) }}">Remover</a>
