@@ -66,15 +66,30 @@ A aplicação tem como requisitos possuir o python 3 instalado e executar os com
 $ pip install -r requirements.txt
  ```
  </font>
-
-E em seguida, para iniciar o programa basta executar o arquivo ``run.py`` através do seguinte comando:
+ 
+Agora ao executar o arquivo ``run.py`` através do comando ``$ python run.py`` será acusado um erro e mostrará o diretório do arquivo ``flask_uploads.py`` em seu computador, como no exemplo abaixo:
 <font size='4'>
  ```
-$ python3 run.py
+File "C:\Users\USUARIO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\flask_uploads.py"
  ```
 </font>
 
-Após isso você verá no terminal a linha de comando com URL ``http://127.0.0.1:5000`` da aplicação:
+Mas ao trocar a seguintes linha em ``flask_uploads.py``:
+<font size='4'>
+ ```
+from werkzeug import secure_filename,FileStorage
+ ```
+</font>
+
+Por:
+<font size='4'>
+ ```
+from werkzeug.utils import secure_filename
+from werkzeug.datastructures import  FileStorage
+ ```
+</font>
+
+Já é possível executar o ``run.py``. Assim, após execução, você verá no terminal a linha de comando com URL ``http://127.0.0.1:5000`` da aplicação:
 <font size='4'>
  ```
  * Serving Flask app 'bughunter'
