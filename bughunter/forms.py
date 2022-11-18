@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
 from werkzeug.utils import secure_filename
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from bughunter.models import User
 
@@ -31,6 +31,6 @@ class LoginForm(FlaskForm):
 
 class ProjectForm(FlaskForm):
     name = StringField(label='Nome do projeto: ', validators=[DataRequired()])
-    description = StringField(label='Descrição do projeto: ', validators=[DataRequired()])
-    submit = SubmitField(label='Adicionar')
+    description = TextAreaField(label='Descrição do projeto: ', validators=[DataRequired()])
     image = FileField(validators=[FileRequired()])
+    submit = SubmitField(label='Adicionar')

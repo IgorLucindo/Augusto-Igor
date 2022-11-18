@@ -6,7 +6,7 @@ from bughunter.forms import RegisterForm, LoginForm, ProjectForm
 from bughunter import db
 from flask_login import login_user, logout_user, login_required, current_user
 from datetime import date
-
+import os
 
 @app.route('/')
 @app.route('/home')
@@ -30,14 +30,17 @@ def projects_page():
         # description = db.Column(db.String(length=1024), nullable=False, unique=True)
         # owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
         # domain = db.relationship('Domain', backref='project_originated', lazy=True)
-            file = request.files['file']
+            file = request.files['image']
+            if file.filename == '':
+                flash('No selected file')
+                return redirect(request.url)
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                return redirect(url_for('download_file', name=filename))
 
             d1 = date.today().strftime("%d/%m/%Y")
             project_to_create = Project(name=form.username.data,
+                                image=filename,
                                 creation_date=d1,
                                 description=form.description.data,
                                 owner=current_user.id)
