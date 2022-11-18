@@ -18,10 +18,12 @@
           </figure>
     <h1 class="">{{ project.name }}</h3>
     <p class="">{{ project.description }}</p>
-    <a type="button" class="btn btn-outline-success" href="{{ url_for('directories_page', project=project.name)}}">Acessar</a>
-    <!-- <br>
+    <div>
+      <a type="button" class="btn btn-outline-success" href="{{ url_for('directories_page', project=project.name)}}">Acessar</a>
     <br>
-    <button type="button" class="btn btn-outline-danger">Remover</a> -->
+      <a type="button" class="btn btn-outline-danger" href="{{ url_for('delete_project_page', project=project.name) }}">Remover</a>
+    </div>
+    
 
     </div>
 </div>

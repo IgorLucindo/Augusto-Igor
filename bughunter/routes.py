@@ -52,6 +52,14 @@ def directories_page(project):
         
         return render_template('directories.html', form=form)
 
+@app.route('/deleteproject/<project>')
+def delete_project_page(project):
+    imagename = Project.query.filter_by(name=project).first().image
+    os.remove(f'bughunter/static/{imagename}')
+    Project.query.filter_by(name=project).delete()
+    db.session.commit()
+    flash(f"Você deletou com sucesso o projeto {project}", category='info')
+    return redirect(url_for("projects_page"))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
