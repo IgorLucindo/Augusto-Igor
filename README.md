@@ -48,10 +48,13 @@ Cada domínio poderá ter mais os seguintes marcadores em relação às análise
 - Análise adiada
 > O usuário ainda não analisou o domínio
 
-## **Mapeamento**
-
-Nesta aba, cada domínio analisado na aba anterior será apresentado aqui nesta aba como um mapeamento da aplicação com cada diretório e funcionalidades embutidas neles.
-O hacker, então, poderá organizar as requisições, funcionalidades, cookies e muito mais para cada diretório da aplicação de cada domínio do alvo analisado.
+Além dos marcadores, cada domínio terá a opção de, em relação a informações adicionais:
+- Editar
+> Opção de adicionar ou alterar informação sobre o domínio
+- Exibir informação
+> Opção de visualizar a informação editada
+- Remover
+> Opção de remover o domínio selecionado
 
 ## **Usuário**
 
