@@ -3,17 +3,6 @@
     Projects Page
 {% endblock %}
 {% block content %}
-
-<head>
-  <style>
-    .botoes{
-      width: 140px;
-      display: flex;
-      justify-content: space-between;
-    };
-  </style>
-</head>
-
 {% for project in projects %}
 
 <br>
@@ -34,10 +23,10 @@
 
       <p class="text-info">{{ project.description }}</p>
 
-      <div class="botoes">
-        <a type="button" class="btn btn-outline-success" href="{{ url_for('directories_page', project=project.name)}}">Acessar</a>
+      <div style="display: flex;">
+        <a type="button" class="btn btn-outline-success" style="margin: 0 5px" href="{{ url_for('directories_page', project=project.name)}}">Acessar</a>
 
-        <a type="button" class="btn btn-outline-danger" href="{{ url_for('delete_project_page', project=project.name) }}">Remover</a>
+        <a type="button" class="btn btn-outline-danger" style="margin: 0 5px" href="{{ url_for('delete_project_page', project=project.name) }}">Remover</a>
       </div>
     </div>
 </div>
