@@ -2,7 +2,7 @@ from bughunter import app, images
 from flask import render_template, redirect, url_for, flash, request
 # from werkzeug.utils import secure_filename
 from bughunter.models import User, Project, Domain
-from bughunter.forms import RegisterForm, LoginForm, ProjectForm, DomainForm, DelDomainForm
+from bughunter.forms import RegisterForm, LoginForm, ProjectForm, DomainForm, DelDomainForm, EditDomainForm
 from bughunter import db
 from flask_login import login_user, logout_user, login_required, current_user
 from datetime import date
@@ -50,6 +50,7 @@ def projects_page():
 def directories_page(project):
     create_domain_form = DomainForm()
     delete_domain_form = DelDomainForm()
+    edit_domain_form = EditDomainForm()
     if request.method == "POST":
         #Lógica de criar domínio
         created_domain = request.form.get('created_domain')
@@ -59,6 +60,7 @@ def directories_page(project):
                                 project=Project.query.filter_by(name=project).first().id)
                 db.session.add(domain_to_create)
             db.session.commit()
+            flash("Diretórios adicionados com sucesso!", category="success")
             
         #Lógica de deletar domínio
         deleted_domain = request.form.get('deleted_domain')

@@ -41,3 +41,6 @@ class DomainForm(FlaskForm):
 
 class DelDomainForm(FlaskForm):
      submit = SubmitField(label='Remover')
+
+class EditDomainForm(FlaskForm):
+     submit = SubmitField(label='Editar')
