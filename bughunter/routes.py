@@ -68,12 +68,23 @@ def directories_page(project):
             Domain.query.filter_by(name=deleted_domain).delete()
             db.session.commit()
             flash(f"Diretório {deleted_domain} deletado com sucesso!", category='success')
+
+        #Lógica de editar domínio
+        edited_domain = request.form.get('edited_domain')
+        if edited_domain: # checa se existe o edited domain
+            new_services = edit_domain_form.services.data
+            new_status = edit_domain_form.status.data
+            edited_domain = Domain.query.filter_by(name=edited_domain).first()
+            edited_domain.services = new_services
+            edited_domain.status = new_status
+            db.session.commit()
+            flash(f"Diretório {deleted_domain} editado com sucesso!", category='success')
         
 
         return redirect(url_for('directories_page', project=project))
     if request.method == "GET":
         domains = Domain.query.filter_by(project=Project.query.filter_by(name=project).first().id)
-        return render_template('domains.html', create_domain_form=create_domain_form, delete_domain_form=delete_domain_form,domains=domains)
+        return render_template('domains.html', create_domain_form=create_domain_form, delete_domain_form=delete_domain_form,edit_domain_form=edit_domain_form,domains=domains)
 
 @app.route('/deleteproject/<project>')
 @login_required
