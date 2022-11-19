@@ -2,7 +2,7 @@ from bughunter import app, images
 from flask import render_template, redirect, url_for, flash, request
 # from werkzeug.utils import secure_filename
 from bughunter.models import User, Project, Domain
-from bughunter.forms import RegisterForm, LoginForm, ProjectForm, DomainForm
+from bughunter.forms import RegisterForm, LoginForm, ProjectForm, DomainForm, DelDomainForm
 from bughunter import db
 from flask_login import login_user, logout_user, login_required, current_user
 from datetime import date
@@ -48,30 +48,39 @@ def projects_page():
 @app.route('/projects/<project>', methods=['GET', 'POST'])
 @login_required
 def directories_page(project):
-    form = DomainForm()
+    create_domain_form = DomainForm()
+    delete_domain_form = DelDomainForm()
     if request.method == "POST":
-        if form.is_submitted():
-            for directory in form.directory.data.splitlines():
+        #Lógica de criar domínio
+        created_domain = request.form.get('created_domain')
+        if created_domain:
+            for directory in create_domain_form.directory.data.splitlines():
                 domain_to_create = Domain(name=directory,
                                 project=Project.query.filter_by(name=project).first().id)
                 db.session.add(domain_to_create)
             db.session.commit()
             
+        #Lógica de deletar domínio
+        deleted_domain = request.form.get('deleted_domain')
+        if deleted_domain: # checa se existe o deleted domain
+            Domain.query.filter_by(name=deleted_domain).delete()
+            db.session.commit()
+            flash(f"Diretório {deleted_domain} deletado com sucesso!", category='success')
         
-        if form.errors != {}: #If there are not errors from the validations
-            for err_msg in form.errors.values():
-                flash(f'Ocorreu um erro ao adicionar diretórios ao projeto: {err_msg}', category='danger')
 
         return redirect(url_for('directories_page', project=project))
     if request.method == "GET":
         domains = Domain.query.filter_by(project=Project.query.filter_by(name=project).first().id)
-        return render_template('domains.html', form=form, domains=domains)
+        return render_template('domains.html', create_domain_form=create_domain_form, delete_domain_form=delete_domain_form,domains=domains)
 
 @app.route('/deleteproject/<project>')
 @login_required
 def delete_project_page(project):
     imagename = Project.query.filter_by(name=project).first().image
     os.remove(f'bughunter/static/{imagename}')
+    #remove os domínios do site
+    Domain.query.filter_by(project=Project.query.filter_by(name=project).first().id).delete()
+
     Project.query.filter_by(name=project).delete()
     db.session.commit()
     flash(f"Você deletou com sucesso o projeto {project}", category='info')

@@ -3,28 +3,43 @@
 Domains Page
 {% endblock %}
 
-
 {% block content %}
 
-<!-- {% for domain in domains %} -->
-
-<div class="row">
-  {% for domain in domains %}
-    <div class="col-md-6">
-        <div style="margin-bottom: 5px" class="card text-center bg-dark">
-             <div class="card-body">
-                 <h5 class="card-title">{{ domain.name }}</h5>
-             </div>
-         </div>
-  {% endfor %}
-    </div>
-<!-- <div class="container-fluid">
-  <div class="card card-body bg-dark">
-    <p class="text-info">{{ domain.name }}</p>
+<br>
+<div class="row" style="margin-top:20px">
+  <div class="col-8">
+      <h2>Lista de diretórios</h2>
+      <p>Aqui você pode analisar </p>
+      <br>
+     <table class="table table-hover table-dark">
+        <thead>
+           <tr>
+              <!-- Your Columns HERE -->
+              <th scope="col">Domínio</th>
+              <th scope="col">Serviço</th>
+              <th scope="col">Análise</th>
+              <th scope="col">Opções</th>
+           </tr>
+        </thead>
+        <tbody>
+           <!-- Your rows inside the table HERE: -->
+           {% for domain in domains %}
+           {% include 'includes/domains_modals.html' %}
+           <tr>
+              <td>{{ domain.name }}</td>
+              <td></td>
+              <td></td>
+              <td>
+                 <button class="btn btn-outline btn-info" data-toggle="modal" data-target="#Modal-MoreInfo-{{ domain.id }}">Informações</button>
+                 <button class="btn btn-outline btn-success" data-toggle="modal" data-target="#Modal-Edit-{{ domain.id }}">Editar</button>
+                 <button class="btn btn-outline btn-danger" data-toggle="modal" data-target="#Modal-Remove-{{ domain.id }}">Remover</button>
+              </td>
+           </tr>
+           {% endfor %}
+        </tbody>
+     </table>
   </div>
-    </div>
-
-{% endfor %} -->
+</div>
 
 <br>
     <div class="container">
@@ -36,14 +51,14 @@ Domains Page
           <div class="collapse" id="collapseExample" >
             <div class="card card-body bg-dark">
                 <form method="POST" class="form-signin" style="color:white" enctype="multipart/form-data">
-                    {{ form.hidden_tag() }}
+                    {{ create_domain_form.hidden_tag() }}
                     
-                    {{ form.directory.label() }}
-                    {{ form.directory(class="form-control", placeholder="Insira novos diretórios a serem analisados: ", rows=5) }}
+                    {{ create_domain_form.directory.label() }}
+                    {{ create_domain_form.directory(class="form-control", placeholder="Lista de diretórios", rows=5) }}
 
                     <br>
-        
-                    {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+                    <input id="created_domain" name="created_domain" type="hidden" value="created_domain">
+                    {{ create_domain_form.submit(class="btn btn-lg btn-block btn-primary") }}
         
                 </form>
             </div>
