@@ -72,6 +72,9 @@ def directories_page(project):
 def delete_project_page(project):
     imagename = Project.query.filter_by(name=project).first().image
     os.remove(f'bughunter/static/{imagename}')
+    #remove os domínios do site
+    Domain.query.filter_by(project=Project.query.filter_by(name=project).first().id).delete()
+
     Project.query.filter_by(name=project).delete()
     db.session.commit()
     flash(f"Você deletou com sucesso o projeto {project}", category='info')
