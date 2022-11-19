@@ -15,9 +15,10 @@ Domains Page
         <thead>
            <tr>
               <!-- Your Columns HERE -->
-              <th scope="col">ID</th>
-              <th scope="col">Diretório</th>
-              <th scope="col">Options</th>
+              <th scope="col">Domínio</th>
+              <th scope="col">Serviço</th>
+              <th scope="col">Análise</th>
+              <th scope="col">Opções</th>
            </tr>
         </thead>
         <tbody>
@@ -25,12 +26,13 @@ Domains Page
            {% for domain in domains %}
            {% include 'includes/domains_modals.html' %}
            <tr>
-              <td>{{ domain.id }}</td>
               <td>{{ domain.name }}</td>
+              <td></td>
+              <td></td>
               <td>
                  <button class="btn btn-outline btn-info" data-toggle="modal" data-target="#Modal-MoreInfo-{{ domain.id }}">Informações</button>
-                 <button class="btn btn-outline btn-success" data-toggle="modal" data-target="#Modal-PurchaseConfirm-{{ domain.id }}">Editar</button>
-                 <button class="btn btn-outline btn-danger" data-toggle="modal" data-target="#Modal-PurchaseConfirm-{{ domain.id }}">Remover</button>
+                 <button class="btn btn-outline btn-success" data-toggle="modal" data-target="#Modal-Edit-{{ domain.id }}">Editar</button>
+                 <button class="btn btn-outline btn-danger" data-toggle="modal" data-target="#Modal-Remove-{{ domain.id }}">Remover</button>
               </td>
            </tr>
            {% endfor %}
@@ -49,14 +51,14 @@ Domains Page
           <div class="collapse" id="collapseExample" >
             <div class="card card-body bg-dark">
                 <form method="POST" class="form-signin" style="color:white" enctype="multipart/form-data">
-                    {{ form.hidden_tag() }}
+                    {{ create_domain_form.hidden_tag() }}
                     
-                    {{ form.directory.label() }}
-                    {{ form.directory(class="form-control", placeholder="Insira novos diretórios a serem analisados: ", rows=5) }}
+                    {{ create_domain_form.directory.label() }}
+                    {{ create_domain_form.directory(class="form-control", placeholder="Lista de diretórios", rows=5) }}
 
                     <br>
         
-                    {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+                    {{ create_domain_form.submit(class="btn btn-lg btn-block btn-primary") }}
         
                 </form>
             </div>

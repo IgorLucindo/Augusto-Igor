@@ -1,0 +1,92 @@
+<style>
+    .modal-content {
+      background-color: #212121
+    }
+  </style>
+<!-- Informações do domínio -->
+<div class="modal fade" id="Modal-MoreInfo-{{ domain.id }}"
+tabindex="-1"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+ <div class="modal-header">
+   <h5 class="modal-title" id="ModalLabel">
+     <!-- -->
+     {{ domain.name }}
+   </h5>
+   <button type="button" class="close"
+           data-dismiss="modal" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+ </div>
+ <div class="modal-footer">
+   <button type="button" class="btn btn-secondary"
+           data-dismiss="modal">Fechar
+   </button>
+ </div>
+</div>
+</div>
+</div>
+<!-- Editar -->
+<div class="modal fade" id="Modal-Edit-{{ domain.id }}"
+tabindex="-1"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+ <div class="modal-header">
+   <h5 class="modal-title" id="ModalLabel">
+     <!-- -->
+     {{ domain.name }}
+   </h5>
+   <button type="button" class="close"
+           data-dismiss="modal" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+ </div>
+ <div class="modal-footer">
+   <button type="button" class="btn btn-secondary"
+           data-dismiss="modal">Fechar
+   </button>
+ </div>
+</div>
+</div>
+</div>
+<!-- Remover -->
+<div class="modal fade" id="Modal-Remove-{{ domain.id }}"
+tabindex="-1"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+ <div class="modal-header">
+   <h5 class="modal-title" id="ModalLabel">
+     <!-- -->
+     {{ domain.name }}
+   </h5>
+   <button type="button" class="close"
+           data-dismiss="modal" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+    <form method="POST">
+        {{ delete_domain_form.hidden_tag() }}
+        <h4 class="text-center">
+          Você tem certeza que quer deletar o domínio <strong>{{ domain.name }}</strong>?
+        </h4>
+        <br>
+        <input id="deleted_domain" name="deleted_domain" type="hidden" value="{{ domain.name }}">
+        {{ delete_domain_form.submit(class="btn btn-outline-danger btn-block") }}
+      </form>
+ </div>
+ <div class="modal-footer">
+   <button type="button" class="btn btn-secondary"
+           data-dismiss="modal">Fechar
+   </button>
+ </div>
+</div>
+</div>
+</div>
