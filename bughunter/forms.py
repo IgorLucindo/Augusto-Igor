@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
 from werkzeug.utils import secure_filename
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from bughunter.models import User
 
@@ -36,11 +36,13 @@ class ProjectForm(FlaskForm):
     submit = SubmitField(label='Adicionar')
 
 class DomainForm(FlaskForm):
-     directory= TextAreaField(label='Insira novos diretórios a serem analisados: ', validators=[DataRequired()])
-     submit = SubmitField(label='Adicionar')
+    directory= TextAreaField(label='Insira novos diretórios a serem analisados: ', validators=[DataRequired()])
+    submit = SubmitField(label='Adicionar')
 
 class DelDomainForm(FlaskForm):
-     submit = SubmitField(label='Remover')
+    submit = SubmitField(label='Remover')
 
 class EditDomainForm(FlaskForm):
-     submit = SubmitField(label='Editar')
+    services = SelectField(label='Sobre serviços rodando na máquina: ',choices=['Desconhecido','Web','Não Web','Não Responde'])
+    status = SelectField(label='Status da análise: ',choices=['Em análise','Analisado','Não analisado','Análise Adiada'])
+    submit = SubmitField(label='Editar')

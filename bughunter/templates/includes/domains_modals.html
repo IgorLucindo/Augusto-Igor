@@ -47,7 +47,21 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
    </button>
  </div>
  <div class="modal-body">
-    <form method="POST"></form>
+    <form method="POST">
+        {{ edit_domain_form.hidden_tag() }}
+        <h4 class="text-center">
+          Preencha as seguintes Informações do domínio <strong>{{ domain.name }}</strong>
+        </h4>
+        <br>
+        {{ edit_domain_form.services.label() }}
+        {{ edit_domain_form.services(class="form-control") }}
+
+        {{ edit_domain_form.status.label() }}
+        {{ edit_domain_form.status(class="form-control") }}
+        <input id="edited_domain" name="edited_domain" type="hidden" value="{{ domain.name }}">
+        <br>
+        {{ edit_domain_form.submit(class="btn btn-outline-success btn-block") }}
+      </form>
  </div>
  <div class="modal-footer">
    <button type="button" class="btn btn-secondary"
