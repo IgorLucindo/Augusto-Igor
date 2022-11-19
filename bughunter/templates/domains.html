@@ -27,8 +27,23 @@ Domains Page
            {% include 'includes/domains_modals.html' %}
            <tr>
               <td>{{ domain.name }}</td>
-              <td></td>
-              <td></td>
+              {% if domain.services == 'Web'  %}
+              <td><div class="p-3 mb-2 bg-primary text-dark">{{ domain.services }}</div></td>
+              {% elif domain.services == 'Não Web' %}
+              <td><div class="p-3 mb-2 bg-primary text-dark">{{ domain.services }}</div></td>
+              {% else %}
+              <td><div class="p-3 mb-2 bg-primary text-dark">{{ domain.services }}</div></td>
+              {% endif %}
+
+              {% if domain.status == 'Não analisado'  %}
+              <td><div class="p-3 mb-2 bg-danger text-white">{{ domain.status }}</div></td>
+              {% elif domain.status == 'Em análise' %}
+              <td><div class="p-3 mb-2 bg-secondary text-white">{{ domain.status }}</div></td>
+              {% elif domain.status == 'Analisado' %}
+              <td><div class="p-3 mb-2 bg-success text-dark">{{ domain.status }}</div></td>
+              {% elif domain.status == 'Análise Adiada' %}
+              <td><div class="p-3 mb-2 bg-success text-dark">{{ domain.status }}</div></td>
+              {% endif %}
               <td>
                  <button class="btn btn-outline btn-info" data-toggle="modal" data-target="#Modal-MoreInfo-{{ domain.id }}">Informações</button>
                  <button class="btn btn-outline btn-success" data-toggle="modal" data-target="#Modal-Edit-{{ domain.id }}">Editar</button>
