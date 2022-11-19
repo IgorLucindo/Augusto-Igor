@@ -51,28 +51,22 @@ def directories_page(project):
     create_domain_form = DomainForm()
     delete_domain_form = DelDomainForm()
     if request.method == "POST":
-        if create_domain_form.validate_on_submit():
+        #Lógica de criar domínio
+        created_domain = request.form.get('created_domain')
+        if created_domain:
             for directory in create_domain_form.directory.data.splitlines():
                 domain_to_create = Domain(name=directory,
                                 project=Project.query.filter_by(name=project).first().id)
                 db.session.add(domain_to_create)
             db.session.commit()
             
+        #Lógica de deletar domínio
+        deleted_domain = request.form.get('deleted_domain')
+        if deleted_domain: # checa se existe o deleted domain
+            Domain.query.filter_by(name=deleted_domain).delete()
+            db.session.commit()
+            flash(f"Diretório {deleted_domain} deletado com sucesso!", category='success')
         
-        if create_domain_form.errors != {}: #If there are not errors from the validations
-            for err_msg in create_domain_form.errors.values():
-                flash(f'Ocorreu um erro ao adicionar diretórios ao projeto: {err_msg}', category='danger')
-
-        #Delete Item Logic
-        
-        if delete_domain_form.validate_on_submit():
-            to_delete_domain = request.form.get('deleted_domain')
-            Domain.query.filter_by(name=to_delete_domain).delete()
-            pass
-        
-        if delete_domain_form.errors != {}: #If there are not errors from the validations
-            for err_msg in create_domain_form.errors.values():
-                flash(f'Ocorreu um erro ao remover o diretório: {err_msg}', category='danger')
 
         return redirect(url_for('directories_page', project=project))
     if request.method == "GET":
