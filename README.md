@@ -48,10 +48,13 @@ Cada domínio poderá ter mais os seguintes marcadores em relação às análise
 - Análise adiada
 > O usuário ainda não analisou o domínio
 
-## **Mapeamento**
-
-Nesta aba, cada domínio analisado na aba anterior será apresentado aqui nesta aba como um mapeamento da aplicação com cada diretório e funcionalidades embutidas neles.
-O hacker, então, poderá organizar as requisições, funcionalidades, cookies e muito mais para cada diretório da aplicação de cada domínio do alvo analisado.
+Além dos marcadores, cada domínio terá a opção de, em relação a informações adicionais:
+- Editar
+> Opção de adicionar ou alterar informação sobre o domínio
+- Exibir informação
+> Opção de visualizar a informação editada
+- Remover
+> Opção de remover o domínio selecionado
 
 ## **Usuário**
 
@@ -103,6 +106,22 @@ Já é possível executar o ``run.py``. Assim, após execução, você verá no 
  ```
 </font>
 
-Acessando a URL aparecerá a seguinte interface no navegador, onde o usuário realizará seu cadastro ou login para acessar seus projetos:
+Acessando a URL em seu navegador, já será possível utilizar a aplicação.
+
+## **Tutorial de utilização**
+
+Ao acessar a URL, aparecerá a "Home" da aplicação onde realizaremos o cadastro ou login em seguida:
 
 ![HOME](images/home.png)
+
+Efetuando o login:
+
+![LOGIN](images/login.jpeg)
+
+Agora poderemos criar novos projetos e acessar projetos existentes:
+
+![PROJECTS](images/projects.jpeg)
+
+Acessando o projeto abriremos sua lista de diretórios, onde poderemos adicionar novos diretórios e editá-los. Assim é capaz de atribuir informação e marcadores a respeito do serviço e do estado da atual análise de cada diretório:
+
+![DIRECTORIES_LIST](images/directories_list.jpeg)
