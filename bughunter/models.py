@@ -40,9 +40,9 @@ class Project(db.Model):
 class Domain(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(length=200), nullable=False, unique=True)
-    description = db.Column(db.String(length=1024), default="")
-    services = db.Column(db.String(length=20), nullable=False, default="Desconhecido")
-    status = db.Column(db.String(length=20), nullable=False, default="Não analisado")
+    description = db.Column(db.String(length=2048), default="")
+    services = db.Column(db.Integer(), nullable=False, default=3)
+    status = db.Column(db.Integer(), nullable=False, default=2)
     project = db.Column(db.Integer(), db.ForeignKey('project.id'))
 
     def __repr__(self):

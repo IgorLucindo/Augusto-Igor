@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+Edit {{ project }} Page
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" class="form-signin" style="color:white" enctype="multipart/form-data">
+    {{ edit_project_form.hidden_tag() }}
+    
+    {{ edit_project_form.description.label() }}
+    {{ edit_project_form.description(class="form-control", placeholder="Descrição do Projeto", rows=5) }}
+
+
+    <br>
+
+    {{ edit_project_form.submit(class="btn btn-lg btn-block btn-primary") }}
+
+</form>
+
+{% endblock %}

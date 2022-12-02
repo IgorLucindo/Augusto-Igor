@@ -31,8 +31,9 @@
     <p class="text-info">{{ project.description }}</p>
     <div class="row">
       <div class="col-sm-12 text-center">
-          <button id="btnSearch" class="btn btn-primary btn-md center-block" Style="width: 100px; margin-right: 0.3cm;" onclick="location.href = '{{ url_for('directories_page', project=project.name) }}';" >Acessar</button>
+          <button id="btnSearch" class="btn btn-primary btn-md center-block" Style="width: 100px; margin-right: 0.3cm;" onclick="location.href = '{{ url_for('domains_page', project=project.name) }}';" >Acessar</button>
           <button id="btnClear" class="btn btn-danger btn-md center-block" Style="width: 100px;" onclick="location.href = '{{ url_for('delete_project_page', project=project.name) }}';" >Remover</button>
+          <button id="btnClear" class="btn btn-info btn-md center-block" Style="width: 100px;" onclick="location.href = '{{ url_for('edit_project_page', project=project.name) }}';" >Editar</button>
       </div>
     </div>
 

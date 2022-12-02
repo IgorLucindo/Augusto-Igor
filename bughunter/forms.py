@@ -43,6 +43,7 @@ class DelDomainForm(FlaskForm):
     submit = SubmitField(label='Remover')
 
 class EditDomainForm(FlaskForm):
-    services = SelectField(label='Sobre serviços rodando na máquina: ',choices=['Desconhecido','Web','Não Web','Não Responde'])
-    status = SelectField(label='Status da análise: ',choices=['Em análise','Analisado','Não analisado','Análise Adiada'])
+    description = TextAreaField(label='Descrição: ')
+    services = SelectField(label='Sobre serviços rodando na máquina: ',choices=[(3, 'Desconhecido'),(1, 'Web'),(2,'Não Web'),(4,'Não Responde')])
+    status = SelectField(label='Status da análise: ',choices=[(2,'Não analisado'), (1,'Em análise'),(3,'Analisado'),(4,'Análise Adiada')])
     submit = SubmitField(label='Editar')

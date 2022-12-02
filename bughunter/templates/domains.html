@@ -8,7 +8,7 @@ Domains Page
 <br>
 <div class="row" style="margin-top:20px">
   <div class="col-8">
-      <h2>Lista de diretórios</h2>
+      <h2>Domínios de {{ project }}</h2>
       <p>Aqui você pode analisar </p>
       <br>
      <table class="table table-hover table-dark">
@@ -27,22 +27,24 @@ Domains Page
            {% include 'includes/domains_modals.html' %}
            <tr>
               <td>{{ domain.name }}</td>
-              {% if domain.services == 'Web'  %}
-              <td><div class="p-3 mb-2 bg-success text-white">{{ domain.services }}</div></td>
-              {% elif domain.services == 'Desconhecido' %}
-              <td><div class="p-3 mb-2 bg-secondary text-white">{{ domain.services }}</div></td>
+              {% if domain.services == 1  %}
+              <td><div class="p-3 mb-2 bg-success text-white">Web</div></td>
+              {% elif domain.services == 3 %}
+              <td><div class="p-3 mb-2 bg-secondary text-white">Desconhecido</div></td>
+              {% elif domain.services == 2 %}
+              <td><div class="p-3 mb-2 bg-warning text-white">Não Web</div></td>
               {% else %}
-              <td><div class="p-3 mb-2 bg-danger text-white">{{ domain.services }}</div></td>
+              <td><div class="p-3 mb-2 bg-danger text-white">Não Responde</div></td>
               {% endif %}
 
-              {% if domain.status == 'Não analisado'  %}
-              <td><div class="p-3 mb-2 bg-danger text-white">{{ domain.status }}</div></td>
-              {% elif domain.status == 'Em análise' %}
-              <td><div class="p-3 mb-2 bg-secondary text-white">{{ domain.status }}</div></td>
-              {% elif domain.status == 'Analisado' %}
-              <td><div class="p-3 mb-2 bg-success text-white">{{ domain.status }}</div></td>
-              {% elif domain.status == 'Análise Adiada' %}
-              <td><div class="p-3 mb-2 bg-info text-white">{{ domain.status }}</div></td>
+              {% if domain.status == 2  %}
+              <td><div class="p-3 mb-2 bg-secondary text-white">Não analisado</div></td>
+              {% elif domain.status == 1 %}
+              <td><div class="p-3 mb-2 bg-warning text-white">Em análise</div></td>
+              {% elif domain.status == 3 %}
+              <td><div class="p-3 mb-2 bg-success text-white">Analisado</div></td>
+              {% elif domain.status == 4 %}
+              <td><div class="p-3 mb-2 bg-info text-white">Análise Adiada</div></td>
               {% endif %}
               <td>
                  <button class="btn btn-outline btn-info" data-toggle="modal" data-target="#Modal-MoreInfo-{{ domain.id }}">Informações</button>
@@ -60,7 +62,7 @@ Domains Page
     <div class="container">
         <p>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-              Novos diretórios
+              Novos domínios
             </button>
           </p>
           <div class="collapse" id="collapseExample" >

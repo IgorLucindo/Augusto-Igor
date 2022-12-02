@@ -53,6 +53,10 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
           Preencha as seguintes Informações do domínio <strong>{{ domain.name }}</strong>
         </h4>
         <br>
+
+        {{ edit_domain_form.description.label() }}
+        {{ edit_domain_form.description(class="form-control") }}
+
         {{ edit_domain_form.services.label() }}
         {{ edit_domain_form.services(class="form-control") }}
 
