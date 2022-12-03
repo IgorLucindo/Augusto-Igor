@@ -122,7 +122,7 @@ Agora poderemos criar novos projetos e acessar projetos existentes:
 
 ![PROJECTS](images/projects.jpeg)
 
-Acessando o projeto abriremos sua lista de diretórios, onde poderemos adicionar novos diretórios e editá-los. Assim é capaz de atribuir informação e marcadores a respeito do serviço e do estado da atual análise de cada diretório:
+Acessando o projeto abriremos sua lista de domínios, onde poderemos adicionar novos domínios e editá-los. Assim é capaz de atribuir informação e marcadores a respeito do serviço e do estado da atual análise de cada domínio:
 
 ![DOMAIN_LIST](images/domain_list.jpeg)
 
