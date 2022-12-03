@@ -124,4 +124,8 @@ Agora poderemos criar novos projetos e acessar projetos existentes:
 
 Acessando o projeto abriremos sua lista de diretórios, onde poderemos adicionar novos diretórios e editá-los. Assim é capaz de atribuir informação e marcadores a respeito do serviço e do estado da atual análise de cada diretório:
 
-![DIRECTORIES_LIST](images/directories_list.jpeg)
+![DOMAIN_LIST](images/domain_list.jpeg)
+
+Clicando em editar:
+
+![DOMAIN_LIST_EDIT](images/domain_list_edit.jpeg)
