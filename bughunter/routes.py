@@ -152,16 +152,17 @@ def register_page():
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     form = LoginForm()
-    if form.validate_on_submit():
-        attempted_user = User.query.filter_by(username=form.username.data).first()
-        if attempted_user and attempted_user.check_password_correction(
-                attempted_password=form.password.data
-        ):
-            login_user(attempted_user)
-            flash(f'Successo! Agora você está logado como: {attempted_user.username}', category='success')
-            return redirect(url_for('projects_page'))
-        else:
-            flash('Nome de usuário ou senha não são compatíveis! Tente novamente', category='danger')
+    if request.method == 'POST':
+        if form.is_submitted():
+            attempted_user = User.query.filter_by(username=form.username.data).first()
+            if attempted_user and attempted_user.check_password_correction(
+                    attempted_password=form.password.data
+            ):
+                login_user(attempted_user)
+                flash(f'Successo! Agora você está logado como: {attempted_user.username}', category='success')
+                return redirect(url_for('projects_page'))
+            else:
+                flash('Nome de usuário ou senha não são compatíveis! Tente novamente', category='danger')
 
     return render_template('login.html', form=form)
 
